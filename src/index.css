@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ═══════════════════════════════════════════
+     LIGHT THEME (Primary / Default)
+     Clean, executive, modern slate canvas
+     ═══════════════════════════════════════════ */
+  :root, html.light {
+    --bg-page:      #F8FAFC;
+    --bg-panel:     #F1F5F9;
+    --bg-card:      #FFFFFF;
+    --bg-raised:    #F1F5F9;
+    --accent:       #0F172A;
+    --accent-muted: #334155;
+    --steel:        #475569;
+    --steel-light:  #64748B;
+    --text-primary: #0F172A;
+    --text-muted:   #475569;
+    --border:       rgba(15, 23, 42, 0.09);
+    --border-hover: rgba(15, 23, 42, 0.24);
+    --shadow:       rgba(15, 23, 42, 0.08);
+
+    --spotify-green: #1DB954;
+    --player-bg:     #FFFFFF;
+    --player-bar:    #F8FAFC;
+    --player-hover:  #EDF2F7;
+    --player-text:   #475569;
+
+    --on-accent:    #FFFFFF;
+  }
+
+  /* ═══════════════════════════════════════════
+     DARK THEME (Toggle)
+     Deep Obsidian / Steel / Cream palette
+     ═══════════════════════════════════════════ */
+  html.dark {
+    --bg-page:      #12181f;
+    --bg-panel:     #161f28;
+    --bg-card:      #1a2430;
+    --bg-raised:    #222f3d;
+    --accent:       #e6e1d6;
+    --accent-muted: #b4aea4;
+    --steel:        #4d6070;
+    --steel-light:  #6b8396;
+    --text-primary: #e6e1d6;
+    --text-muted:   #8a9aa8;
+    --border:       rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(230, 225, 214, 0.28);
+    --shadow:       rgba(0, 0, 0, 0.55);
+
+    /* Music player tones */
+    --spotify-green: #1DB954;
+    --player-bg:     #181818;
+    --player-bar:    #242424;
+    --player-hover:  #2d2d2d;
+    --player-text:   #b3b3b3;
+
+    /* Button inverted text */
+    --on-accent:    #12181f;
+  }
+
+  html { background: var(--bg-page); }
+  body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+}
+
+/* ─── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar { width: 7px; }
+::-webkit-scrollbar-track { background: var(--bg-page); }
+::-webkit-scrollbar-thumb { background: var(--bg-raised); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--steel); }
+
+/* ─── Glass Panel ───────────────────────────── */
+.glass-panel {
+  background: color-mix(in srgb, var(--bg-card) 85%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover) !important;
+  box-shadow: 0 16px 40px -12px var(--shadow);
+}
+
+/* ─── Dot-grid ──────────────────────────────── */
+.bg-grid-pattern {
+  background-image: radial-gradient(color-mix(in srgb, var(--text-primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Shimmer ───────────────────────────────── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+.shimmer-effect { position: relative; overflow: hidden; }
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent 0, rgba(255,255,255,0.06) 20%, rgba(255,255,255,0.12) 60%, transparent);
+  animation: shimmer 2.8s infinite;
+}
+
+/* ─── Spider web cursor ─────────────────────── */
+@media (pointer: fine) {
+  body, a, button, [role="button"], label, select, summary {
+    cursor: none !important;
+  }
+  input, textarea {
+    cursor: text !important;
+  }
+}
+
+/* ─── Spotify embed overrides ───────────────── */
+.spotify-embed-wrapper iframe {
+  border-radius: 12px !important;
+}
